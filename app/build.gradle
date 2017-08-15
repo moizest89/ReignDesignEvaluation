@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 
-def api_Server_url = "http://fxservicesstaging.nunchee.com/api/1.0/";
+def api_Server_url = "https://hn.algolia.com/api/v1/";
 def app_name = "ReignDesignEvaluation";
 
 android {

@@ -11,7 +11,10 @@ import android.view.ViewGroup;
 import moizest89.reigndesignevaluation.R;
 
 
-public class ArticleListFragment extends Fragment {
+public class ArticleListFragment extends Fragment implements IArticleListView{
+
+
+    private ArticleListPresenter mPresenter;
 
 
     public ArticleListFragment() {
@@ -35,6 +38,9 @@ public class ArticleListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_article_list, container, false);
 
 
+        this.mPresenter = new ArticleListPresenter(getActivity());
+        this.mPresenter.attachView(this);
+        this.mPresenter.getData();
 
         return view;
     }
