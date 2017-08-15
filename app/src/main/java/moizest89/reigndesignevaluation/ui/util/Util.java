@@ -28,4 +28,13 @@ public class Util {
             ((Activity) context).finish();
 
     }
+
+
+    public static String validateNullString(String value){
+
+        if(value == null){
+            return "";
+        }
+        return value;
+    }
 }

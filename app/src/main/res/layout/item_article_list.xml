@@ -10,21 +10,40 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        card_view:contentPadding="0dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        card_view:contentPadding="10dp"
         card_view:cardCornerRadius="4dp"
         card_view:cardElevation="3dp"
         card_view:cardUseCompatPadding="true"
         card_view:cardPreventCornerOverlap="false">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="ROW"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:padding="20dp"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_title"
+                android:textStyle="bold"
+                 />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_content"
+                android:maxLines="2"
+                android:ellipsize="end"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/text_view_author_and_date"/>
+
+        </LinearLayout>
+
 
     </android.support.v7.widget.CardView>
 

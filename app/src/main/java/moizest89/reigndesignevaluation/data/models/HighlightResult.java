@@ -22,6 +22,10 @@ public class HighlightResult {
     @Expose
     private StoryUrl storyUrl;
 
+    @SerializedName("title")
+    @Expose
+    private Title title;
+
     public Author getAuthor() {
         return author;
     }
@@ -52,5 +56,13 @@ public class HighlightResult {
 
     public void setStoryUrl(StoryUrl storyUrl) {
         this.storyUrl = storyUrl;
+    }
+
+    public Title getTitle() {
+        return title;
+    }
+
+    public void setTitle(Title title) {
+        this.title = title;
     }
 }
