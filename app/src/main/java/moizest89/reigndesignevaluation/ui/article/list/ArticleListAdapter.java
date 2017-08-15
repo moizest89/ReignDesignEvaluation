@@ -14,7 +14,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import moizest89.reigndesignevaluation.R;
-import moizest89.reigndesignevaluation.data.models.CommentText;
 import moizest89.reigndesignevaluation.data.models.HighlightResult;
 import moizest89.reigndesignevaluation.data.models.Hit;
 import moizest89.reigndesignevaluation.data.models.StoryTitle;
@@ -87,6 +86,10 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
 
     public Hit getDataForValue(int position){
         return this.mData.get(position);
+    }
+
+    public void itemNotRemoved(int position){
+        this.notifyItemChanged(position);
     }
 
     public void removeItem(int position){
