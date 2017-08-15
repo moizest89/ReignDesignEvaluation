@@ -6,9 +6,20 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
+import moizest89.reigndesignevaluation.R;
+
 /**
  * Created by moizest89 on 8/15/17.
  */
+
+
+
+/**
+    This class allow me to get swipe action callbacks for the ecyclerview.
+    The easier way is setting ItemTouchHelper.LEFT in constructor to limit action to left and show Confirmation Dialog.
+    I created a interface to communicate what was the action selected (delete or not delete) to the view.
+
+ **/
 
 public class RecyclerViewItemAction extends ItemTouchHelper.SimpleCallback {
 
@@ -33,7 +44,7 @@ public class RecyclerViewItemAction extends ItemTouchHelper.SimpleCallback {
         final int position = viewHolder.getAdapterPosition();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this.context);
-        builder.setMessage("Are you sure to delete?");    //set message
+        builder.setMessage(R.string.main_message_delete_confirmation);
 
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { //when click on DELETE
             @Override
