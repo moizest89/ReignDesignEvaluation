@@ -15,7 +15,7 @@ import moizest89.reigndesignevaluation.R;
 
 
 /**
-    This class allow me to get swipe action callbacks for the ecyclerview.
+    This class allow me to get swipe action callbacks for the recyclerview.
     The easier way is setting ItemTouchHelper.LEFT in constructor to limit action to left and show Confirmation Dialog.
     I created a interface to communicate what was the action selected (delete or not delete) to the view.
 
