@@ -21,3 +21,12 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext{
+
+    SUPPORT_LIBRARY_VERSION = '25.3.1'
+    RETROFIT_VERSION = '2.3.0'
+    BUTTERKNIFE = '8.7.0'
+    RETROFIT_VERSION = '2.3.0'
+    OKHTTP = '3.8.1'
+}
