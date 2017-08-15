@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+
+def api_Server_url = "http://fxservicesstaging.nunchee.com/api/1.0/";
+def app_name = "ReignDesignEvaluation";
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -10,6 +14,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [base_server_url: api_Server_url]
+        buildConfigField "String", "base_url", "\"${manifestPlaceholders.base_server_url}\""
+        buildConfigField "String", "applicaion_name", "\"${manifestPlaceholders.app_name}\""
     }
     buildTypes {
         release {
@@ -24,9 +31,27 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile "com.android.support:appcompat-v7:$rootProject.ext.SUPPORT_LIBRARY_VERSION"
+    compile "com.android.support:design:$rootProject.ext.SUPPORT_LIBRARY_VERSION"
+    compile "com.android.support:cardview-v7:$rootProject.ext.SUPPORT_LIBRARY_VERSION"
+
+
+
+    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.RETROFIT_VERSION"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.RETROFIT_VERSION"
+
+
+    compile "com.jakewharton:butterknife:$rootProject.ext.BUTTERKNIFE"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.BUTTERKNIFE"
+
+    compile "com.squareup.okhttp3:okhttp:$rootProject.ext.OKHTTP"
+
+    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
+
+
+
+    compile 'com.google.code.gson:gson:2.6.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:support-v4:25.3.1'
     testCompile 'junit:junit:4.12'
+
 }
