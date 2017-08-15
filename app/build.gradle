@@ -46,12 +46,12 @@ dependencies {
 
     compile "com.squareup.okhttp3:okhttp:$rootProject.ext.OKHTTP"
 
+
+
+
+
     compile 'uk.co.chrisjenx:calligraphy:2.3.0'
-
-
-
     compile 'com.google.code.gson:gson:2.6.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
     testCompile 'junit:junit:4.12'
-
 }
