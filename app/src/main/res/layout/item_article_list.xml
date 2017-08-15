@@ -27,19 +27,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/text_view_title"
+                tools:text="Title"
                 android:textStyle="bold"
                  />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_view_content"
-                android:maxLines="2"
-                android:ellipsize="end"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
+                android:layout_marginTop="10dp"
+                tools:text="Author and created at"
                 android:id="@+id/text_view_author_and_date"/>
 
         </LinearLayout>

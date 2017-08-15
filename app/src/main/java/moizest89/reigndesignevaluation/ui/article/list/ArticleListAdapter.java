@@ -50,13 +50,12 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
 
         HighlightResult highlightResult = hit.getHighlightResult();
 
-        //Title
-        String mTitleArticle = "";
-
-
         /** I created two ways to get title because "the _highlightResult"
          * key sometimes has title or story_title values
          */
+
+        //Title
+        String mTitleArticle = "";
         if(highlightResult.getTitle() != null) {
             Title title = highlightResult.getTitle();
             mTitleArticle = title.getValue();
@@ -64,8 +63,15 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
             StoryTitle storyTitle = highlightResult.getStoryTitle();
             mTitleArticle = storyTitle.getValue();
         }
+        holder.text_view_title.setText(Html.fromHtml(Util.validateNullString(mTitleArticle)));
 
-        holder.text_view_title.setText(Util.validateNullString(mTitleArticle));
+        //Content
+//        holder.text_view_content.setText((Util.validateNullString(hit.getCommentText())));
+
+        //Author and dat
+
+        holder.text_view_author_and_date.setText((Util.validateNullString(hit.getAuthor())));
+
 
     }
 
@@ -94,8 +100,8 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
 
         @BindView(R.id.text_view_title)
         TextView text_view_title;
-        @BindView(R.id.text_view_content)
-        TextView text_view_content;
+//        @BindView(R.id.text_view_content)
+//        TextView text_view_content;
         @BindView(R.id.text_view_author_and_date)
         TextView text_view_author_and_date;
 
