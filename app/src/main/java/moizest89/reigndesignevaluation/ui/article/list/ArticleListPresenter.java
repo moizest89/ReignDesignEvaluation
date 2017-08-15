@@ -2,6 +2,7 @@ package moizest89.reigndesignevaluation.ui.article.list;
 
 import android.content.Context;
 
+import moizest89.reigndesignevaluation.data.models.UserResponse;
 import moizest89.reigndesignevaluation.data.remote.DataManager;
 import moizest89.reigndesignevaluation.ui.base.BasePreenter;
 import retrofit2.Response;
@@ -23,17 +24,14 @@ public class ArticleListPresenter extends BasePreenter<IArticleListView>{
 
     public void getData(){
 
-        dataManager.getArticles(new DataManager.DataManagerCallBacks<Response>() {
+        dataManager.getArticles(new DataManager.DataManagerCallBacks<UserResponse>() {
             @Override
-            public void onSuccess(Response onSucces) {
+            public void onSuccess(UserResponse onSucces) {
 
-                if(onSucces.isSuccessful()){
+                getMvpView().setData(onSucces);
+                getMvpView().showLoader(false);
+                getMvpView().showData(true);
 
-                    onSucces.body();
-
-                }else{
-
-                }
             }
 
             @Override

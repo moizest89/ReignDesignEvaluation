@@ -1,5 +1,6 @@
 package moizest89.reigndesignevaluation.ui.article.list;
 
+import moizest89.reigndesignevaluation.data.models.UserResponse;
 import moizest89.reigndesignevaluation.ui.base.MvpView;
 
 /**
@@ -7,4 +8,9 @@ import moizest89.reigndesignevaluation.ui.base.MvpView;
  */
 
 public interface IArticleListView extends MvpView{
+
+    void showLoader(boolean status);
+    void showData(boolean status);
+    void setData(UserResponse response);
+
 }

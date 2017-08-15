@@ -34,12 +34,11 @@ public class DataManager {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
 
 
-//                if(response.isSuccessful()){
-                UserResponse userResponse = response.body();
-                dataManagerCallBacks.onSuccess(response);
-//                }else{
+                if(response.isSuccessful()){
+                    dataManagerCallBacks.onSuccess(response.body());
+                }else{
 //
-//                }
+                }
 
             }
 
