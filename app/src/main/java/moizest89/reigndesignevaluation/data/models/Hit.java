@@ -8,11 +8,13 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import io.realm.RealmObject;
+
 /**
  * Created by moizest89 on 8/14/17.
  */
 
-public class Hit{
+public class Hit extends RealmObject {
 
     @SerializedName("created_at")
     @Expose

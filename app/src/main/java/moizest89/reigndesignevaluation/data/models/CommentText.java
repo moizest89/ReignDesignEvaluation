@@ -8,11 +8,13 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import io.realm.RealmObject;
+
 /**
  * Created by moizest89 on 8/14/17.
  */
 
-public class CommentText implements Parcelable {
+public class CommentText extends RealmObject {
 
     @SerializedName("value")
     @Expose
@@ -59,37 +61,6 @@ public class CommentText implements Parcelable {
         this.matchedWords = matchedWords;
     }
 
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.value);
-        dest.writeString(this.matchLevel);
-        dest.writeValue(this.fullyHighlighted);
-        dest.writeStringList(this.matchedWords);
-    }
-
     public CommentText() {
     }
-
-    protected CommentText(Parcel in) {
-        this.value = in.readString();
-        this.matchLevel = in.readString();
-        this.fullyHighlighted = (Boolean) in.readValue(Boolean.class.getClassLoader());
-        this.matchedWords = in.createStringArrayList();
-    }
-
-    public static final Parcelable.Creator<CommentText> CREATOR = new Parcelable.Creator<CommentText>() {
-        public CommentText createFromParcel(Parcel source) {
-            return new CommentText(source);
-        }
-
-        public CommentText[] newArray(int size) {
-            return new CommentText[size];
-        }
-    };
 }
