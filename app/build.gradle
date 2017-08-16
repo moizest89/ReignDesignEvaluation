@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'realm-android'
 
 def api_Server_url = "https://hn.algolia.com/api/v1/";
 def app_name = "ReignDesignEvaluation";
