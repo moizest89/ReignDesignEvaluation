@@ -55,9 +55,6 @@ public class Hit extends RealmObject {
     @SerializedName("created_at_i")
     @Expose
     private Integer createdAtI;
-    @SerializedName("_tags")
-    @Expose
-    private List<String> tags = null;
     @SerializedName("objectID")
     @Expose
     private String objectID;
@@ -167,14 +164,6 @@ public class Hit extends RealmObject {
 
     public void setCreatedAtI(Integer createdAtI) {
         this.createdAtI = createdAtI;
-    }
-
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<String> tags) {
-        this.tags = tags;
     }
 
     public String getObjectID() {

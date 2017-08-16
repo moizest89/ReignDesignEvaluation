@@ -22,9 +22,6 @@ public class Title  extends RealmObject {
     @SerializedName("fullyHighlighted")
     @Expose
     private Boolean fullyHighlighted;
-    @SerializedName("matchedWords")
-    @Expose
-    private List<String> matchedWords = null;
 
     public String getValue() {
         return value;
@@ -48,14 +45,6 @@ public class Title  extends RealmObject {
 
     public void setFullyHighlighted(Boolean fullyHighlighted) {
         this.fullyHighlighted = fullyHighlighted;
-    }
-
-    public List<String> getMatchedWords() {
-        return matchedWords;
-    }
-
-    public void setMatchedWords(List<String> matchedWords) {
-        this.matchedWords = matchedWords;
     }
 
 }

@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 
 /**
@@ -25,9 +26,7 @@ public class CommentText extends RealmObject {
     @SerializedName("fullyHighlighted")
     @Expose
     private Boolean fullyHighlighted;
-    @SerializedName("matchedWords")
-    @Expose
-    private List<String> matchedWords = null;
+
 
     public String getValue() {
         return value;
@@ -51,14 +50,6 @@ public class CommentText extends RealmObject {
 
     public void setFullyHighlighted(Boolean fullyHighlighted) {
         this.fullyHighlighted = fullyHighlighted;
-    }
-
-    public List<String> getMatchedWords() {
-        return matchedWords;
-    }
-
-    public void setMatchedWords(List<String> matchedWords) {
-        this.matchedWords = matchedWords;
     }
 
     public CommentText() {

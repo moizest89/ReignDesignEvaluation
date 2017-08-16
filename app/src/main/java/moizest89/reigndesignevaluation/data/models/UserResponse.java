@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 
 /**
@@ -18,7 +19,7 @@ public class UserResponse extends RealmObject {
 
     @SerializedName("hits")
     @Expose
-    private List<Hit> hits = null;
+    private RealmList<Hit> hits = null;
     @SerializedName("nbHits")
     @Expose
     private Integer nbHits;
@@ -44,11 +45,11 @@ public class UserResponse extends RealmObject {
     @Expose
     private String params;
 
-    public List<Hit> getHits() {
+    public RealmList<Hit> getHits() {
         return hits;
     }
 
-    public void setHits(List<Hit> hits) {
+    public void setHits(RealmList<Hit> hits) {
         this.hits = hits;
     }
 

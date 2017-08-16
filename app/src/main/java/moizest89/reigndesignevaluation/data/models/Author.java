@@ -9,6 +9,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 
 /**
@@ -23,9 +24,7 @@ public class Author extends RealmObject {
     @SerializedName("matchLevel")
     @Expose
     private String matchLevel;
-    @SerializedName("matchedWords")
-    @Expose
-    private List<Object> matchedWords = null;
+
 
     public String getValue() {
         return value;
@@ -42,15 +41,6 @@ public class Author extends RealmObject {
     public void setMatchLevel(String matchLevel) {
         this.matchLevel = matchLevel;
     }
-
-    public List<Object> getMatchedWords() {
-        return matchedWords;
-    }
-
-    public void setMatchedWords(List<Object> matchedWords) {
-        this.matchedWords = matchedWords;
-    }
-
 
     public Author() {
     }
