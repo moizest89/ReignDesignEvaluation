@@ -12,6 +12,7 @@ import moizest89.reigndesignevaluation.ui.util.NetworkUtils;
 
 public class BaseActivity extends AppCompatActivity {
 
+    public static boolean hasInternetConnection = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +20,7 @@ public class BaseActivity extends AppCompatActivity {
 
 
         if(!NetworkUtils.isNetworkAvailable(this)){
-            Toast.makeText(this, "No network available!", Toast.LENGTH_SHORT).show();
+            hasInternetConnection = false;
         }
 
     }

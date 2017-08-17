@@ -12,5 +12,7 @@ public interface IArticleListView extends MvpView{
     void showLoader(boolean status);
     void showData(boolean status);
     void setData(UserResponse response);
+    void showSimpleMessage(int message);
+    void deleteItemFromList(int position);
 
 }

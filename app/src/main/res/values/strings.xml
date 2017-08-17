@@ -6,5 +6,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="main_message_delete_confirmation">Are you sure to delete item?</string>
     <string name="title_activity_article_details">ArticleDetailsActivity</string>
+    <string name="mains_message_delete_item_successful">Delete element successful</string>
+
+    <string name="main_message_no_internet_connection">No Internet connection</string>
 
 </resources>
