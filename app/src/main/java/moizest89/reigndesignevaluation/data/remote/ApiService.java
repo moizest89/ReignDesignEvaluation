@@ -13,6 +13,7 @@ public interface ApiService {
 
 
     @GET("search_by_date?query=android")
+//    @GET("hits")
     Call<UserResponse> getArticlesList();
 
 

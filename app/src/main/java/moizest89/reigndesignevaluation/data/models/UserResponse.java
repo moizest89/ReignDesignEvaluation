@@ -8,15 +8,19 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by moizest89 on 8/14/17.
  */
 
-public class UserResponse {
+public class UserResponse extends RealmObject {
 
     @SerializedName("hits")
     @Expose
-    private List<Hit> hits = null;
+    private RealmList<Hit> hits = null;
     @SerializedName("nbHits")
     @Expose
     private Integer nbHits;
@@ -37,16 +41,17 @@ public class UserResponse {
     private Boolean exhaustiveNbHits;
     @SerializedName("query")
     @Expose
+    @PrimaryKey
     private String query;
     @SerializedName("params")
     @Expose
     private String params;
 
-    public List<Hit> getHits() {
+    public RealmList<Hit> getHits() {
         return hits;
     }
 
-    public void setHits(List<Hit> hits) {
+    public void setHits(RealmList<Hit> hits) {
         this.hits = hits;
     }
 

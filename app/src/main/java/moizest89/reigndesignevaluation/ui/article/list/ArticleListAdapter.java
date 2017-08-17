@@ -13,6 +13,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.realm.RealmList;
 import moizest89.reigndesignevaluation.R;
 import moizest89.reigndesignevaluation.data.models.HighlightResult;
 import moizest89.reigndesignevaluation.data.models.Hit;
@@ -27,7 +28,7 @@ import moizest89.reigndesignevaluation.ui.util.Util;
 public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.Holder>{
 
     private Context context;
-    private List<Hit> mData = new ArrayList<>();
+    private RealmList<Hit> mData;
 
     public ArticleListAdapter(Context context) {
         this.context = context;
@@ -76,10 +77,10 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
 
     @Override
     public int getItemCount() {
-        return this.mData.size();
+        return ((this.mData == null)? 0 : this.mData.size() );
     }
 
-    public void setmData(List<Hit> data){
+    public void setmData(RealmList<Hit> data){
         this.mData = data;
         this.notifyDataSetChanged();
     }

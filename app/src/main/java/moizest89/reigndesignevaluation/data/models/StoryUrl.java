@@ -9,11 +9,13 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.RealmObject;
+
 /**
  * Created by moizest89 on 8/14/17.
  */
 
-public class StoryUrl implements Parcelable {
+public class StoryUrl extends RealmObject {
 
     @SerializedName("value")
     @Expose
@@ -21,9 +23,6 @@ public class StoryUrl implements Parcelable {
     @SerializedName("matchLevel")
     @Expose
     private String matchLevel;
-    @SerializedName("matchedWords")
-    @Expose
-    private List<Object> matchedWords = null;
 
     public String getValue() {
         return value;
@@ -41,44 +40,6 @@ public class StoryUrl implements Parcelable {
         this.matchLevel = matchLevel;
     }
 
-    public List<Object> getMatchedWords() {
-        return matchedWords;
-    }
-
-    public void setMatchedWords(List<Object> matchedWords) {
-        this.matchedWords = matchedWords;
-    }
-
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.value);
-        dest.writeString(this.matchLevel);
-        dest.writeList(this.matchedWords);
-    }
-
     public StoryUrl() {
     }
-
-    protected StoryUrl(Parcel in) {
-        this.value = in.readString();
-        this.matchLevel = in.readString();
-        this.matchedWords = new ArrayList<Object>();
-        in.readList(this.matchedWords, List.class.getClassLoader());
-    }
-
-    public static final Parcelable.Creator<StoryUrl> CREATOR = new Parcelable.Creator<StoryUrl>() {
-        public StoryUrl createFromParcel(Parcel source) {
-            return new StoryUrl(source);
-        }
-
-        public StoryUrl[] newArray(int size) {
-            return new StoryUrl[size];
-        }
-    };
 }

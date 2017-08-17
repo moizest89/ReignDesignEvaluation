@@ -8,39 +8,31 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by moizest89 on 8/14/17.
  */
 
-public class Hit{
+public class Hit extends RealmObject {
 
     @SerializedName("created_at")
     @Expose
     private String createdAt;
-    @SerializedName("title")
-    @Expose
-    private Object title;
-    @SerializedName("url")
-    @Expose
-    private Object url;
+
     @SerializedName("author")
     @Expose
     private String author;
-    @SerializedName("points")
-    @Expose
-    private Object points;
-    @SerializedName("story_text")
-    @Expose
-    private Object storyText;
+
     @SerializedName("comment_text")
     @Expose
     private String commentText;
-    @SerializedName("num_comments")
-    @Expose
-    private Object numComments;
+
     @SerializedName("story_id")
     @Expose
     private Integer storyId;
+
     @SerializedName("story_title")
     @Expose
     private String storyTitle;
@@ -53,11 +45,10 @@ public class Hit{
     @SerializedName("created_at_i")
     @Expose
     private Integer createdAtI;
-    @SerializedName("_tags")
-    @Expose
-    private List<String> tags = null;
+
     @SerializedName("objectID")
     @Expose
+    @PrimaryKey
     private String objectID;
     @SerializedName("_highlightResult")
     @Expose
@@ -71,44 +62,12 @@ public class Hit{
         this.createdAt = createdAt;
     }
 
-    public Object getTitle() {
-        return title;
-    }
-
-    public void setTitle(Object title) {
-        this.title = title;
-    }
-
-    public Object getUrl() {
-        return url;
-    }
-
-    public void setUrl(Object url) {
-        this.url = url;
-    }
-
     public String getAuthor() {
         return author;
     }
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public Object getPoints() {
-        return points;
-    }
-
-    public void setPoints(Object points) {
-        this.points = points;
-    }
-
-    public Object getStoryText() {
-        return storyText;
-    }
-
-    public void setStoryText(Object storyText) {
-        this.storyText = storyText;
     }
 
     public String getCommentText() {
@@ -119,13 +78,6 @@ public class Hit{
         this.commentText = commentText;
     }
 
-    public Object getNumComments() {
-        return numComments;
-    }
-
-    public void setNumComments(Object numComments) {
-        this.numComments = numComments;
-    }
 
     public Integer getStoryId() {
         return storyId;
@@ -165,14 +117,6 @@ public class Hit{
 
     public void setCreatedAtI(Integer createdAtI) {
         this.createdAtI = createdAtI;
-    }
-
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<String> tags) {
-        this.tags = tags;
     }
 
     public String getObjectID() {

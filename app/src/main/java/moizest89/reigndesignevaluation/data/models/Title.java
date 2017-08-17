@@ -5,11 +5,13 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import io.realm.RealmObject;
+
 /**
  * Created by moizest89 on 8/15/17.
  */
 
-public class Title {
+public class Title  extends RealmObject {
 
     @SerializedName("value")
     @Expose
@@ -20,9 +22,6 @@ public class Title {
     @SerializedName("fullyHighlighted")
     @Expose
     private Boolean fullyHighlighted;
-    @SerializedName("matchedWords")
-    @Expose
-    private List<String> matchedWords = null;
 
     public String getValue() {
         return value;
@@ -46,14 +45,6 @@ public class Title {
 
     public void setFullyHighlighted(Boolean fullyHighlighted) {
         this.fullyHighlighted = fullyHighlighted;
-    }
-
-    public List<String> getMatchedWords() {
-        return matchedWords;
-    }
-
-    public void setMatchedWords(List<String> matchedWords) {
-        this.matchedWords = matchedWords;
     }
 
 }

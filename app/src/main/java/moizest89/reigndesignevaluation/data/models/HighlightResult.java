@@ -3,11 +3,13 @@ package moizest89.reigndesignevaluation.data.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import io.realm.RealmObject;
+
 /**
  * Created by moizest89 on 8/14/17.
  */
 
-public class HighlightResult {
+public class HighlightResult extends RealmObject {
 
     @SerializedName("author")
     @Expose
