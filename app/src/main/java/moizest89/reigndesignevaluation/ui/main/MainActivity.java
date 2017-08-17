@@ -21,6 +21,8 @@ public class MainActivity extends BaseActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
     }
 
     @Override
@@ -43,5 +45,10 @@ public class MainActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public static boolean getInternetConnection(){
+        return hasInternetConnection;
     }
 }

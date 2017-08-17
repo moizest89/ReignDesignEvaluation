@@ -9,6 +9,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by moizest89 on 8/14/17.
@@ -44,8 +45,10 @@ public class Hit extends RealmObject {
     @SerializedName("created_at_i")
     @Expose
     private Integer createdAtI;
+
     @SerializedName("objectID")
     @Expose
+    @PrimaryKey
     private String objectID;
     @SerializedName("_highlightResult")
     @Expose

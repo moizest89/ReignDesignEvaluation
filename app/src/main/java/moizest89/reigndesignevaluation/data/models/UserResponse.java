@@ -10,6 +10,7 @@ import java.util.List;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by moizest89 on 8/14/17.
@@ -40,6 +41,7 @@ public class UserResponse extends RealmObject {
     private Boolean exhaustiveNbHits;
     @SerializedName("query")
     @Expose
+    @PrimaryKey
     private String query;
     @SerializedName("params")
     @Expose
