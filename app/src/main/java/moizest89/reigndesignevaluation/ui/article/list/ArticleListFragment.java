@@ -18,9 +18,12 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import moizest89.reigndesignevaluation.R;
+import moizest89.reigndesignevaluation.data.models.Hit;
 import moizest89.reigndesignevaluation.data.models.UserResponse;
+import moizest89.reigndesignevaluation.ui.article.details.ArticleDetailsActivity;
 import moizest89.reigndesignevaluation.ui.main.MainActivity;
 import moizest89.reigndesignevaluation.ui.util.NetworkUtils;
+import moizest89.reigndesignevaluation.ui.util.OnItemClickListener;
 import moizest89.reigndesignevaluation.ui.util.RecyclerViewItemAction;
 import moizest89.reigndesignevaluation.ui.util.Util;
 
@@ -66,6 +69,18 @@ public class ArticleListFragment extends Fragment implements
         ButterKnife.bind(this, view);
 
         this.mAdapater = new ArticleListAdapter(getActivity());
+        this.mAdapater.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClickListener(View view, Integer position) {
+                Hit hit = mAdapater.getDataForValue(position);
+
+                Bundle bundle = new Bundle();
+                bundle.putString(Util.INTENT_DATA_SEND, hit.getObjectID());
+
+                Util.changeActivity(getContext(), ArticleDetailsActivity.class, bundle, false);
+
+            }
+        });
 
         this.swipeRefreshLayout.setOnRefreshListener(this);
 
