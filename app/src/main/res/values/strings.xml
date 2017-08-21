@@ -12,5 +12,6 @@
     <string name="menu_action_share">Share article</string>
 
     <string name="main_message_share_via_app">Share via - Reign Design Evaluation - </string>
+    <string name="title_activity_splash">SplashActivity</string>
 
 </resources>
