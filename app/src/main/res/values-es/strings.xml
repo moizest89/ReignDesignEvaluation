@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Reign Design Evaluation</string>
+    <string name="action_settings">Configuraciones</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_message_delete_confirmation">¿Estas seguro de eliminar este item?</string>
+    <string name="title_activity_article_details">Detalle del articulo</string>
+    <string name="mains_message_delete_item_successful">Eliminacion del articulo exitosa</string>
+
+    <string name="main_message_no_internet_connection">No tienes conexión a internet</string>
+
+    <string name="menu_action_share">Compartir articulo</string>
+
+    <string name="main_message_share_via_app">Compartido via - Reign Design Evaluation - </string>
+
+
+</resources>
