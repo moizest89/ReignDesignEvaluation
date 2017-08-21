@@ -19,6 +19,7 @@ import moizest89.reigndesignevaluation.data.models.HighlightResult;
 import moizest89.reigndesignevaluation.data.models.Hit;
 import moizest89.reigndesignevaluation.data.models.StoryTitle;
 import moizest89.reigndesignevaluation.data.models.Title;
+import moizest89.reigndesignevaluation.ui.util.OnItemClickListener;
 import moizest89.reigndesignevaluation.ui.util.Util;
 
 /**
@@ -29,6 +30,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
 
     private Context context;
     private RealmList<Hit> mData;
+    private OnItemClickListener onItemClickListener;
 
     public ArticleListAdapter(Context context) {
         this.context = context;
@@ -46,23 +48,8 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
 
         Hit hit = this.mData.get(position);
 
-
-
-        HighlightResult highlightResult = hit.getHighlightResult();
-
-        /** I created two ways to get title because "the _highlightResult"
-         * key sometimes has title or story_title values
-         */
-
         //Title
-        String mTitleArticle = "";
-        if(highlightResult.getTitle() != null) {
-            Title title = highlightResult.getTitle();
-            mTitleArticle = title.getValue();
-        }else {
-            StoryTitle storyTitle = highlightResult.getStoryTitle();
-            mTitleArticle = storyTitle.getValue();
-        }
+        String mTitleArticle = Util.getHitTitle(hit);
         holder.text_view_title.setText(Html.fromHtml(Util.validateNullString(mTitleArticle)));
 
         //Content
@@ -100,7 +87,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     }
 
 
-    public class Holder extends RecyclerView.ViewHolder{
+    public class Holder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         @BindView(R.id.text_view_title)
         TextView text_view_title;
@@ -114,6 +101,18 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
             super(itemView);
 
             ButterKnife.bind(this, itemView);
+
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            onItemClickListener.onItemClickListener(v, getAdapterPosition());
+        }
+    }
+
+
+    public void setOnItemClickListener(OnItemClickListener clickListener){
+        this.onItemClickListener = clickListener;
     }
 }

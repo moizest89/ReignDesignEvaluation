@@ -25,6 +25,10 @@ public class Hit extends RealmObject {
     @Expose
     private String author;
 
+    @SerializedName("url")
+    @Expose
+    private String url;
+
     @SerializedName("comment_text")
     @Expose
     private String commentText;
@@ -133,6 +137,14 @@ public class Hit extends RealmObject {
 
     public void setHighlightResult(HighlightResult highlightResult) {
         this.highlightResult = highlightResult;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Hit() {
