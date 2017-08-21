@@ -68,4 +68,19 @@ public class Util {
 
         return mTitleArticle;
     }
+
+
+    public static String getHitUrl(Hit hit){
+        String mUrlWebSite = "http://google.com/webiste="+hit.getStoryTitle();
+
+        if(hit.getUrl() == null){
+            if(hit.getStoryUrl() != null){
+                mUrlWebSite = hit.getStoryUrl();
+            }
+        }else{
+            mUrlWebSite = hit.getUrl();
+        }
+
+        return mUrlWebSite;
+    }
 }

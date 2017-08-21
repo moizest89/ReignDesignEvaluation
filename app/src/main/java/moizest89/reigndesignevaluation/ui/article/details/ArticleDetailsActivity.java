@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ActionProvider;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +37,7 @@ public class ArticleDetailsActivity extends AppCompatActivity {
 
     private String object_id;
     private Realm realm;
+    private Hit hit;
 
     private final static String TAG = ArticleDetailsActivity.class.getSimpleName();
 
@@ -52,21 +55,13 @@ public class ArticleDetailsActivity extends AppCompatActivity {
             this.object_id = intent.getStringExtra(Util.INTENT_DATA_SEND);
             this.realm = MyRealmInstance.with(this);
 
-            Hit hit = this.realm.where(Hit.class).equalTo("objectID", this.object_id).findFirst();
+             this.hit = this.realm.where(Hit.class).equalTo("objectID", this.object_id).findFirst();
 
             if(hit.isLoaded()) {
                 getSupportActionBar().setTitle(R.string.title_activity_article_details);
                 getSupportActionBar().setSubtitle(Util.getHitTitle(hit));
 
-                String mUrlWebSite = "http://google.com/webiste="+hit.getStoryTitle();
-
-                if(hit.getUrl() == null){
-                    if(hit.getStoryUrl() != null){
-                        mUrlWebSite = hit.getStoryUrl();
-                    }
-                }else{
-                    mUrlWebSite = hit.getUrl();
-                }
+                String mUrlWebSite = Util.getHitUrl(this.hit);
 
                 Log.e(TAG, "mUrlWebSite: "+mUrlWebSite);
 
@@ -105,8 +100,11 @@ public class ArticleDetailsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_share_item, menu);
+
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -117,10 +115,26 @@ public class ArticleDetailsActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_share_info) {
+            shareInfo();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void shareInfo(){
+
+        if(hit.isLoaded()) {
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            String shareBody = Util.getHitTitle(hit) +
+                    " "+Util.getHitUrl(this.hit)+
+                    " \n "+getResources().getString(R.string.main_message_share_via_app);
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, Util.getHitTitle(hit));
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+            startActivity(Intent.createChooser(sharingIntent, "Share via"));
+        }
+
     }
 
 }
