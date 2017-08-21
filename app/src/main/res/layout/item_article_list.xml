@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/text_view_title"
                 tools:text="Title"
-                android:textStyle="bold"
+                fontPath="fonts/roboto_condensed_bold.ttf"
                  />
 
             <TextView
