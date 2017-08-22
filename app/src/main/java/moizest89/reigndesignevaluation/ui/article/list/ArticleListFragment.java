@@ -9,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import moizest89.reigndesignevaluation.data.models.Hit;
 import moizest89.reigndesignevaluation.data.models.UserResponse;
 import moizest89.reigndesignevaluation.ui.article.details.ArticleDetailsActivity;
 import moizest89.reigndesignevaluation.ui.main.MainActivity;
+import moizest89.reigndesignevaluation.ui.receivers.NetworkChangeReceiver;
 import moizest89.reigndesignevaluation.ui.util.NetworkUtils;
 import moizest89.reigndesignevaluation.ui.util.OnItemClickListener;
 import moizest89.reigndesignevaluation.ui.util.RecyclerViewItemAction;
@@ -44,6 +46,8 @@ public class ArticleListFragment extends Fragment implements
 
     private ArticleListPresenter mPresenter;
     private ArticleListAdapter mAdapater;
+
+    private final static String TAG = ArticleListFragment.class.getSimpleName();
 
 
     public ArticleListFragment() {
@@ -95,7 +99,7 @@ public class ArticleListFragment extends Fragment implements
 
         this.mPresenter = new ArticleListPresenter(getActivity());
         this.mPresenter.attachView(this);
-        this.mPresenter.getData();
+        this.mPresenter.getData(false);
 
         return view;
     }
@@ -107,6 +111,8 @@ public class ArticleListFragment extends Fragment implements
             this.progressBar.animate().alpha(1).setDuration(Util.ANIMAATION_DATA_DELAY);
         }else{
             this.progressBar.animate().alpha(0).setDuration(Util.ANIMAATION_DATA_DELAY);
+            if(swipeRefreshLayout.isRefreshing())
+                swipeRefreshLayout.setRefreshing(false);
         }
     }
 
@@ -121,8 +127,6 @@ public class ArticleListFragment extends Fragment implements
 
     @Override
     public void setData(UserResponse response) {
-        if(swipeRefreshLayout.isRefreshing())
-            swipeRefreshLayout.setRefreshing(false);
 
         this.mAdapater.setmData(response.getHits());
     }
@@ -158,18 +162,6 @@ public class ArticleListFragment extends Fragment implements
 
     @Override
     public void onRefresh() {
-
-//        NetworkUtils.hasInternetConnection(getActivity(), new NetworkUtils.NetworkUtilsInterface() {
-//            @Override
-//            public void hasConnection(boolean status) {
-//                if(status){
-                    mPresenter.updateData();
-//                }else{
-//                    if(swipeRefreshLayout.isRefreshing())
-//                        swipeRefreshLayout.setRefreshing(false);
-//                    showSimpleMessage(R.string.main_message_no_internet_connection);
-//                }
-//            }
-//        });
+        mPresenter.getData(true);
     }
 }

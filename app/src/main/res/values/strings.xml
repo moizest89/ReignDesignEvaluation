@@ -13,5 +13,6 @@
 
     <string name="main_message_share_via_app">Share via - Reign Design Evaluation - </string>
 
+    <string name="main_message_problems_with_get_data">There is been a problem. Check your connection or try again</string>
 
 </resources>

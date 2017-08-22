@@ -1,11 +1,17 @@
 package moizest89.reigndesignevaluation.data.remote;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.os.Build;
+import android.util.Log;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
 import moizest89.reigndesignevaluation.data.models.Hit;
 import moizest89.reigndesignevaluation.data.models.UserResponse;
+import moizest89.reigndesignevaluation.ui.receivers.NetworkChangeReceiver;
 import moizest89.reigndesignevaluation.ui.util.MyRealmInstance;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -15,12 +21,15 @@ import retrofit2.Response;
  * Created by moizest89 on 8/14/17.
  */
 
-public class DataManager {
+public class DataManager{
 
 
     private ApiService apiService;
     private Context context;
     private Realm realm;
+    private BroadcastReceiver mNetworkReceiver;
+    private boolean isConnected = true;
+    private final static String TAG = DataManager.class.getSimpleName();
 
 
     public DataManager(Context context) {
@@ -31,29 +40,30 @@ public class DataManager {
     }
 
 
-    public void updateArticles(final DataManagerCallBacks dataManagerCallBacks){
-
-        this.realm.beginTransaction();
-        this.realm.delete(UserResponse.class);
-        this.realm.commitTransaction();
-
-        getArticles(dataManagerCallBacks);
-//        this.realm.executeTransactionAsync(new Realm.Transaction() {
-//            @Override
-//            public void execute(Realm realm) {
-//                realm.deleteAll();
-//
-//            }
-//        });
-    }
-
-    public void getArticles(final DataManagerCallBacks dataManagerCallBacks){
+//    private void registerNetworkBroadcastForNougat() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            registerReceiver(mNetworkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+//        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            registerReceiver(mNetworkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+//        }
+//    }
 
 
-        final UserResponse result = realm.where(UserResponse.class).findFirst();
+    public void getArticles(final boolean isUpdate, final DataManagerCallBacks dataManagerCallBacks){
+
+
+
+        final UserResponse result;
+        if(!isUpdate) {
+            result = realm.where(UserResponse.class).findFirst();
+        }else{
+            result = null;
+        }
 
         if(result == null) {
             Call<UserResponse> call = this.apiService.getArticlesList();
+
             call.enqueue(new Callback<UserResponse>() {
                 @Override
                 public void onResponse(Call<UserResponse> call, final Response<UserResponse> response) {
@@ -64,6 +74,11 @@ public class DataManager {
                         realm.executeTransaction(new Realm.Transaction() {
                             @Override
                             public void execute(Realm realm) {
+
+                                if(isUpdate){
+                                    realm.delete(UserResponse.class);
+                                }
+
                                 UserResponse userResponse = response.body();
                                 realm.copyToRealmOrUpdate(userResponse);
                                 dataManagerCallBacks.onSuccess(response.body());
@@ -110,7 +125,6 @@ public class DataManager {
         }
 
     }
-
 
 
     public interface DataManagerCallBacks<T>{
