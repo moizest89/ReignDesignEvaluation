@@ -1,6 +1,6 @@
 
 
- ![Reign Logo](https://www.reigndesign.com//assets/images/logo.svg) 
+ ![Reign Logo](https://raw.githubusercontent.com/moizest89/ReignDesignEvaluation/master/reign_design_name.png) 
  
 # Demo application for apply to job position as  Android Developer - Reign Design
 
