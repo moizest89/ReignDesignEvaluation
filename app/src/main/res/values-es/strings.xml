@@ -15,5 +15,6 @@
 
     <string name="main_message_share_via_app">Compartido via - Reign Design Evaluation - </string>
 
+    <string name="main_message_problems_with_get_data">Ha habido un problema. Compruebe su conexión o vuelva a intentarlo</string>
 
 </resources>

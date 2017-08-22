@@ -7,6 +7,7 @@ import moizest89.reigndesignevaluation.data.models.Hit;
 import moizest89.reigndesignevaluation.data.models.UserResponse;
 import moizest89.reigndesignevaluation.data.remote.DataManager;
 import moizest89.reigndesignevaluation.ui.base.BasePreenter;
+import moizest89.reigndesignevaluation.ui.receivers.NetworkChangeReceiver;
 
 /**
  * Created by moizest89 on 8/14/17.
@@ -23,9 +24,9 @@ public class ArticleListPresenter extends BasePreenter<IArticleListView>{
     }
 
 
-    public void getData(){
+    public void getData(final boolean isUpdate){
 
-        dataManager.getArticles(new DataManager.DataManagerCallBacks<UserResponse>() {
+        dataManager.getArticles(isUpdate, new DataManager.DataManagerCallBacks<UserResponse>() {
             @Override
             public void onSuccess(UserResponse onSucces) {
 
@@ -37,29 +38,14 @@ public class ArticleListPresenter extends BasePreenter<IArticleListView>{
 
             @Override
             public void onError(Throwable onError) {
-
-            }
-        });
-    }
-
-
-    public void updateData(){
-
-        this.dataManager.updateArticles(new DataManager.DataManagerCallBacks<UserResponse>() {
-            @Override
-            public void onSuccess(UserResponse onSucces) {
-                getMvpView().setData(onSucces);
                 getMvpView().showLoader(false);
-                getMvpView().showData(true);
-            }
-
-            @Override
-            public void onError(Throwable onError) {
+                getMvpView().showSimpleMessage(R.string.main_message_problems_with_get_data);
 
             }
         });
-
     }
+
+
     public void deleteSpecificItemFromList(Hit hit, final int position){
 
         dataManager.deleteHitItem(hit.getObjectID(), new DataManager.DataManagerCallBacks() {
